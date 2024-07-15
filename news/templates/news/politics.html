@@ -1,0 +1,22 @@
+{% extends "news/base.html" %}
+
+{% block body%}
+{% if politics %}
+<div class="link-container">
+<h2 class="mx-3 my-4">Politics</h2>
+</div>
+        {% for article in articles %}
+        <div class="row ml-5">
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ article.imageUrl }}" alt="{{ article.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">{{ article.short_description }}</p>
+            <a href="{% url 'article' id=article.id %}" class="btn btn-primary">Go Details</a>
+            <a href="#" class="tag" >#{{ article.tags }}</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "news/base.html" %}
+
+{% block body%}
+<h1 class="mx-4">Create News</h1>
+
+<form class="mx-4" action="{% url 'create' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" id="title" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label for="description">Short Description</label>
+        <textarea class="form-control" type="text" name="short_description" id="short_description" placeholder="Short Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" type="text" name="description" id="description" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input class="form-control" type="text" name="tags" id="tags" placeholder="Tags">
+    </div>
+    <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input class="form-control" type="text" name="imageurl" id="imageurl" placeholder="Image Url">
+    </div>
+    <div class="form-group">
+        <label for="published_date">Published Date</label>
+        <input class="form-control" type="date" name="published_date" id="published_date" placeholder="Published Date">
+    </div>
+   <div class="form-group">
+    <label for="category">Select Category</label>
+    <select class="form-control" name="category" id="category">
+    {% for ctg in categories %}
+      <option value="{{ ctg }}">{{ ctg }}</option>
+      {% endfor %}
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="author">Select Author</label>
+    <select class="form-control" name="author" id="author">
+    {% for aut in authors %}
+      <option value="{{ aut }}">{{ aut }}</option>
+      {% endfor %}
+    </select>
+  </div>
+    <button type="submit" id="create_button" class="btn btn-success mb-4">Create News</button>
+
+
+
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('create_button').addEventListener('click', function(event) {
+        event.preventDefault(); 
+
+        // Show an alert box
+        alert('News article created!'); // Modify this message as needed
+
+        // Optionally, you can submit the form after showing the alert
+        // document.getElementById('your_form_id').submit();
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "news/base.html" %}
+
+{% block body%}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active justify-content-center d-flex">
+    <div class="fr-img">
+    <div class="img-container">
+    <a href="{% url 'apple' %}">
+      <img class="d-block" src="https://image.hurimg.com/i/hurriyet/75/0x0/6667f16679207d16c3dca3d5.jpg" alt="First slide">
+      <div class="text">Apple partners with OpenAI as it unveils 'Apple Intelligence'</div>
+      </a>
+      </div>
+      </div>
+      <div class="fr-img2">
+      <div class="img-container">
+      <a href="{% url 'coldplay' %}">
+      <img class="d-block" src="https://www.rollingstone.co.uk/wp-content/uploads/sites/2/2022/09/xx9nOJ9UBg.jpg" alt="First slide">
+      <div class="text">Coldplay beats emissions target for world tour</div>
+      </a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="container">
+        <div class="row">
+        {% for article in articles %}
+        <div class="col-md-4 mb-4">
+        <div class="card" style="width: 20rem; height: 34rem;">
+        <img class="card-img-top" src="{{ article.imageUrl }}" alt="{{ article.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">{{ article.short_description }}</p>
+            <a href="{% url 'article' id=article.id %}" class="btn btn-primary">Go Details</a>
+            <a href="#" class="tag" >#{{ article.tags }}</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}
